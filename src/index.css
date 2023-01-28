@@ -1,4 +1,4 @@
-@tailind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -7,9 +7,9 @@
   --color-bg-secondary: #ffffff;
   --color-text-primary: #ffffff;
   --color-text-secondary: #e2e8f0;
-  --color-text-accent: #0052ff;
+  --color-text-accent: #2f51a3;
   --color-bg-input: #4a5361;
-  --color-bg-button: #0052ff;
+  --color-bg-button: #2f51a3;
 }
 
 .light {
@@ -17,14 +17,13 @@
   --color-bg-secondary: #edf2f7;
   --color-text-primary: #000000;
   --color-text-secondary: #4a5568;
-  --color-text-accent: #0052ff;
+  --color-text-accent: #2f51a3;
   --color-bg-input: #edf2f7;
-  --color-bg-button: #0052ff;
+  --color-bg-button: #2f51a3;
 }
 
 :root {
   @apply bg-primary text-primary;
-
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -40,6 +39,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
 }
 
 body,
