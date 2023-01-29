@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 import Footer from './components/Footer';
+import CompletedAnime from './pages/CompletedAnime';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/completed' element={<CompletedAnime />} />
         </Routes>
         <Footer />
       </AuthContextProvider>

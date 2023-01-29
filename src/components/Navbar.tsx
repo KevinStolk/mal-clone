@@ -33,9 +33,6 @@ const Navbar = () => {
           <img className='w-32 flex' src={MALLogoBlack} alt={MALLogoBlack} />
         </Link>
       </div>
-      <div className='hidden md:block'>
-        <ThemeToggle />
-      </div>
       {user ? (
         <div className='hidden md:block'>
           <Link to='/account' className='p-4 hover:text-accent transition'>
