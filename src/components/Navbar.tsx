@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { UserAuth } from '../context/AuthContext';
@@ -7,8 +7,20 @@ import MALLogoBlack from '../assets/img/logo_mal_black.png';
 /* import MALLogoWhite from '../assets/img/logo_mal.png'; */
 
 const Navbar = () => {
-  const { user } = UserAuth();
+  const { user, logout } = UserAuth();
   const [nav, setNav] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    try {
+      await logout();
+      navigate('/');
+      setNav(!nav);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleNav = () => {
     setNav(!nav);
@@ -30,7 +42,10 @@ const Navbar = () => {
             My Account
           </Link>
 
-          <button className='bg-button text-btnText px-5 py-2 ml-2 rounded-md shadow-lg hover:shadow-2xl'>
+          <button
+            onClick={handleSignOut}
+            className='bg-button text-btnText px-5 py-2 ml-2 rounded-md shadow-lg hover:shadow-2xl'
+          >
             Sign out
           </button>
         </div>
@@ -91,7 +106,10 @@ const Navbar = () => {
             </Link>
           </div>
         ) : (
-          <button className='w-full m-y2 p-3 bg-button text-btnText rounded-md shadow-xl'>
+          <button
+            onClick={handleSignOut}
+            className='w-full m-y2 p-3 bg-button text-btnText rounded-md shadow-xl'
+          >
             Sign Out
           </button>
         )}

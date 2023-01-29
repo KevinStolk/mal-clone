@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MALLogoBlack from '../assets/img/logo_mal_black.png';
 import axios from 'axios';
+import AnimeItem from './AnimeItem';
 
 interface IAniProps {
   mal_id: number;
@@ -117,16 +118,18 @@ const Anime: React.FC = () => {
           <tr className='border-b'>
             <th></th>
             <th className='px-4'>#</th>
-            <th className='text-left'>Image</th>
+            <th className='text-left'>Anime</th>
             <th></th>
-            <th>Anime Title</th>
+            <th></th>
             <th></th>
             <th className='hidden md:table-cell'>Score</th>
             <th className='hidden sm:table-cell'>Type</th>
             <th>Progress</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <AnimeItem />
+        </tbody>
       </table>
     </div>
   );
