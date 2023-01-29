@@ -52,3 +52,7 @@ html {
   width: 100%;
   height: 100vh;
 }
+
+.card {
+  @apply rounded-2xl shadow-2xl bg-primary px-2 max-w-[1140px] w-full mx-auto;
+}

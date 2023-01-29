@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='shadow-lg shadow-gray-300 w-full px-2 flex items-center justify-between h-[58px] font-bold'>
+    <div className='bg-[#2f51a3] shadow-lg shadow-gray-300 w-full px-2 flex items-center justify-between h-[58px] font-bold'>
       <div className='logo mx-2'>
         <Link to='/'>
           <img className='w-32 flex' src={MALLogoBlack} alt={MALLogoBlack} />

@@ -1,7 +1,8 @@
 import React from 'react';
+import Anime from '../components/Anime';
 
-const Home = () => {
-  return <div>Home</div>;
+const Home: React.FC = () => {
+  return <Anime />;
 };
 
 export default Home;
