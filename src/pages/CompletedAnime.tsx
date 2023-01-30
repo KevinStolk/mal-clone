@@ -65,99 +65,101 @@ const CompletedAnime = () => {
   };
 
   return (
-    <div className='card my-4'>
-      <div className='flex flex-col md:flex-row justify-between pt-4 pb-6 text-center md:text-right'>
-        <img
-          className='w-52 flex my-2 px-2'
-          src={MALLogoBlack}
-          alt={MALLogoBlack}
-        />
-      </div>
-      <div className='status-menu flex flex-col md:flex-row justify-evenly pt-4 pb-6 text-center md:text-right'>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? 'border-b border-[#2f51a3] font-bold' : ''
-          }
-          to='/'
-        >
-          Currently Watching
-        </NavLink>
-        <NavLink
-          to='/completed'
-          className={({ isActive }) =>
-            isActive ? 'border-b border-[#2f51a3] font-bold' : ''
-          }
-        >
-          Completed
-        </NavLink>
-      </div>
-      <table className='w-full border-collapse text-center'>
-        <thead>
-          <tr className='border-b'>
-            <th></th>
-            <th className='px-4'>#</th>
-            <th className='text-left'>Anime</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th className='hidden md:table-cell'>Score</th>
-            <th className='hidden sm:table-cell'>Type</th>
-            <th>Progress</th>
-          </tr>
-        </thead>
-        <tbody>
-          {anime
-            ?.filter((ani) => ani.completed)
-            .map((ani, index) => (
-              <tr
-                className={`${
-                  ani.completed ? 'h-[80px] border-b overflow-hidden' : ''
-                } ${
-                  ani.completed
-                    ? 'line-through h-[80px] border-b overflow-hidden'
-                    : ''
-                }`}
-                key={ani.id}
-              >
-                <td>
-                  <input
-                    type='checkbox'
-                    checked={ani.completed}
-                    onChange={() => toggleCompleted(ani.id)}
-                  />
-                </td>
-                <td>{index + 1}</td>
-                <td>
-                  <div className='flex items-center'>
-                    <img
-                      className='w-16 mr-2 pb-2 hover:cursor-pointer'
-                      onClick={() => {
-                        window.open(`${ani?.url}`, '_blank');
-                      }}
-                      src={ani?.image}
-                      alt={ani?.image}
+    <div className='pageWrapper'>
+      <div className='card my-4'>
+        <div className='flex flex-col md:flex-row justify-between pt-4 pb-6 text-center md:text-right'>
+          <img
+            className='w-52 flex my-2 px-2'
+            src={MALLogoBlack}
+            alt={MALLogoBlack}
+          />
+        </div>
+        <div className='status-menu flex flex-col md:flex-row justify-evenly pt-4 pb-6 text-center md:text-right'>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? 'border-b border-[#2f51a3] font-bold' : ''
+            }
+            to='/'
+          >
+            Currently Watching
+          </NavLink>
+          <NavLink
+            to='/completed'
+            className={({ isActive }) =>
+              isActive ? 'border-b border-[#2f51a3] font-bold' : ''
+            }
+          >
+            Completed
+          </NavLink>
+        </div>
+        <table className='w-full border-collapse text-center'>
+          <thead>
+            <tr className='border-b'>
+              <th></th>
+              <th className='px-4'>#</th>
+              <th className='text-left'>Anime</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th className='hidden md:table-cell'>Score</th>
+              <th className='hidden sm:table-cell'>Type</th>
+              <th>Progress</th>
+            </tr>
+          </thead>
+          <tbody>
+            {anime
+              ?.filter((ani) => ani.completed)
+              .map((ani, index) => (
+                <tr
+                  className={`${
+                    ani.completed ? 'h-[80px] border-b overflow-hidden' : ''
+                  } ${
+                    ani.completed
+                      ? 'line-through h-[80px] border-b overflow-hidden'
+                      : ''
+                  }`}
+                  key={ani.id}
+                >
+                  <td>
+                    <input
+                      type='checkbox'
+                      checked={ani.completed}
+                      onChange={() => toggleCompleted(ani.id)}
                     />
-                    <p className='hidden sm:table-cell'>{ani.title}</p>
-                  </div>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{parseInt(ani.score)}</td>
-                <td className='w-[180px] hidden md:table-cell'>{ani.type}</td>
-                <td className='w-[180px] hidden sm:table-cell'>
-                  {ani.watched_episodes} / {ani.episodes}{' '}
-                </td>
-                <td className='pl-8'>
-                  <FaRegTrashAlt
-                    onClick={() => deleteAnime(ani?.id)}
-                    className='cursor-pointer hover:text-red-500 transition'
-                  />
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+                  </td>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className='flex items-center'>
+                      <img
+                        className='w-16 mr-2 pb-2 hover:cursor-pointer'
+                        onClick={() => {
+                          window.open(`${ani?.url}`, '_blank');
+                        }}
+                        src={ani?.image}
+                        alt={ani?.image}
+                      />
+                      <p className='hidden sm:table-cell'>{ani.title}</p>
+                    </div>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>{parseInt(ani.score)}</td>
+                  <td className='w-[180px] hidden md:table-cell'>{ani.type}</td>
+                  <td className='w-[180px] hidden sm:table-cell'>
+                    {ani.watched_episodes} / {ani.episodes}{' '}
+                  </td>
+                  <td className='pl-8'>
+                    <FaRegTrashAlt
+                      onClick={() => deleteAnime(ani?.id)}
+                      className='cursor-pointer hover:text-red-500 transition'
+                    />
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

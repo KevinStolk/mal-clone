@@ -35,9 +35,7 @@ const Navbar = () => {
       </div>
       {user ? (
         <div className='hidden md:block'>
-          <Link to='/account' className='p-4 hover:text-accent transition'>
-            My Account
-          </Link>
+          <small className='text-primary'>Welcome {user?.email}</small>
 
           <button
             onClick={handleSignOut}
@@ -74,11 +72,6 @@ const Navbar = () => {
           <li onClick={handleNav} className='border-b py-6'>
             <Link to='/'>Home</Link>
           </li>
-          {user ? (
-            <li onClick={handleNav} className='border-b py-6'>
-              <Link to='/account'>Account</Link>
-            </li>
-          ) : null}
           <li className='py-6'>
             <ThemeToggle />
           </li>

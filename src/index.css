@@ -53,6 +53,12 @@ html {
   height: 100vh;
 }
 
+.pageWrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 .card {
   @apply rounded-2xl shadow-2xl bg-primary px-2 max-w-[1140px] w-full mx-auto;
 }
