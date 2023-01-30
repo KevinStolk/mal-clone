@@ -8,12 +8,17 @@ import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 import Footer from './components/Footer';
 import CompletedAnime from './pages/CompletedAnime';
+import AMVComp from './assets/amv_comp.mp4';
 
 function App() {
   return (
     <ThemeProvider>
       <AuthContextProvider>
         <Navbar />
+
+        <video autoPlay muted loop id='video'>
+          <source src={AMVComp} type='video/mp4'></source>
+        </video>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<SignIn />} />

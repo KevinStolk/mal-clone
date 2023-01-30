@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import { Link, NavLink, RouteMatch } from 'react-router-dom';
 import MALLogoBlack from '../assets/img/logo_mal_black.png';
+import MALLogoWhite from '../assets/img/logo_mal.png';
 import axios from 'axios';
 import AnimeItem from './AnimeItem';
 import { UserAuth } from '../context/AuthContext';
@@ -36,7 +37,7 @@ interface IAniList {
 const Anime: React.FC = () => {
   const [query, setQuery] = useState<string>('');
   const [searchResult, setSearchResult] = useState<never[]>([]);
-  /* const [error, setError] = useState(''); */
+  const [error, setError] = useState('');
 
   const { user } = UserAuth();
 
@@ -55,6 +56,7 @@ const Anime: React.FC = () => {
       })
       .catch((err) => {
         console.error(err);
+        setError(err.message);
       });
   };
 
@@ -80,12 +82,17 @@ const Anime: React.FC = () => {
   return (
     <div className='pageWrapper'>
       <div className='card my-4'>
-        {/* {error ? <p className='text-red-500 text-center my-2'>{error}</p> : ''}{' '} */}
+        {error ? <p className='text-red-500 text-center my-2'>{error}</p> : ''}{' '}
         <div className='flex flex-col md:flex-row justify-between pt-4 pb-6 text-center md:text-right'>
           <img
-            className='w-52 flex my-2 px-2'
+            className='flex w-52 my-2 px-2 dark:hidden'
             src={MALLogoBlack}
             alt={MALLogoBlack}
+          />
+          <img
+            className='hidden w-52 my-2 px-2 dark:flex'
+            src={MALLogoWhite}
+            alt={MALLogoWhite}
           />
           {user ? (
             <form onSubmit={searchAnime}>

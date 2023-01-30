@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import { db } from '../db/firebase';
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
@@ -73,6 +73,15 @@ const CompletedAnime = () => {
             src={MALLogoBlack}
             alt={MALLogoBlack}
           />
+          {!user ? (
+            <Link to='/signup'>
+              <a className='text-primary hover:underline transition'>
+                Create an account first to start making a list...
+              </a>
+            </Link>
+          ) : (
+            ''
+          )}
         </div>
         <div className='status-menu flex flex-col md:flex-row justify-evenly pt-4 pb-6 text-center md:text-right'>
           <NavLink

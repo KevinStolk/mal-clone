@@ -4,7 +4,7 @@ import ThemeToggle from './ThemeToggle';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { UserAuth } from '../context/AuthContext';
 import MALLogoBlack from '../assets/img/logo_mal_black.png';
-/* import MALLogoWhite from '../assets/img/logo_mal.png'; */
+import MALLogoWhite from '../assets/img/logo_mal.png';
 
 const Navbar = () => {
   const { user, logout } = UserAuth();
@@ -27,10 +27,19 @@ const Navbar = () => {
   };
 
   return (
-    <div className='bg-[#2f51a3] shadow-lg shadow-gray-300 w-full px-2 flex items-center justify-between h-[58px] font-bold'>
+    <div className='bg-[#2f51a3] w-full px-2 flex items-center justify-between h-[58px] font-bold'>
       <div className='logo mx-2'>
         <Link to='/'>
-          <img className='w-32 flex' src={MALLogoBlack} alt={MALLogoBlack} />
+          <img
+            className='flex w-32 dark:hidden'
+            src={MALLogoBlack}
+            alt={MALLogoBlack}
+          />
+          <img
+            className='hidden w-32 dark:flex'
+            src={MALLogoWhite}
+            alt={MALLogoWhite}
+          />
         </Link>
       </div>
       {user ? (
