@@ -15,7 +15,6 @@ function App() {
     <ThemeProvider>
       <AuthContextProvider>
         <Navbar />
-
         <video autoPlay muted loop id='video'>
           <source src={AMVComp} type='video/mp4'></source>
         </video>

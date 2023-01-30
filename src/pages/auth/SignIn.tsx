@@ -1,7 +1,7 @@
 import React, { ReactEventHandler, useState } from 'react';
 import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
-import { signIn, UserAuth } from '../../context/AuthContext';
+import { UserAuth } from '../../context/AuthContext';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -30,16 +30,12 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  const onSubmit = async (
-    data: SignInFormData,
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
+  const onSubmit = async (data: SignInFormData) => {
     setError('');
     try {
       await signIn(data.email, data.password);
       navigate('/');
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
       console.error(err.message);
     }

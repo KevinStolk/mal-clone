@@ -6,9 +6,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-interface SignInFormData {
+interface SignUpFormData {
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 const SignUp = () => {
@@ -29,20 +30,16 @@ const SignUp = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<SignUpFormData>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (
-    data: SignInFormData,
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
+  const onSubmit = async (data: SignUpFormData) => {
     setError('');
     try {
       await signUp(data.email, data.password);
       navigate('/');
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
       console.error(err.message);
     }
@@ -66,7 +63,7 @@ const SignUp = () => {
               />
               <AiOutlineMail className='absolute right-2 top-3 text-gray-400' />
             </div>
-            <p className='text-red-500'>{errors.email?.message}</p>
+            <p className='text-red-500'>{errors.email?.message?.toString()}</p>
           </div>
           <div className='my-4'>
             <label>Password</label>
@@ -80,7 +77,9 @@ const SignUp = () => {
               />
               <AiFillLock className='absolute right-2 top-3 text-gray-400' />
             </div>
-            <p className='text-red-500'>{errors.password?.message}</p>
+            <p className='text-red-500'>
+              {errors.password?.message?.toString()}
+            </p>
             <label>Confirm Password</label>
             <div className='my-2 w-full relative rounded-md shadow-xl'>
               <input
@@ -92,7 +91,9 @@ const SignUp = () => {
               />
               <AiFillLock className='absolute right-2 top-3 text-gray-400' />
             </div>
-            <p className='text-red-500'>{errors.confirmPassword?.message}</p>
+            <p className='text-red-500'>
+              {errors.confirmPassword?.message?.toString()}
+            </p>
           </div>
           <button className='w-full my-2 p-3 bg-button text-btnText rounded-md shadow-xl'>
             Sign up
