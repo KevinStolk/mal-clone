@@ -1,12 +1,12 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { auth, db } from '../db/firebase';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { auth, db } from "../db/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+} from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 interface User {
   email: string;
@@ -31,11 +31,21 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const signUp = (email: string, password: string) => {
-    createUserWithEmailAndPassword(auth, email, password);
-    return setDoc(doc(db, 'users', email), {
-      watchList: [],
-    });
+  const signUp = async (email: string, password: string) => {
+    try {
+      const existingDoc = await getDoc(doc(db, "users", email));
+      if (existingDoc.exists()) {
+        throw new Error(`A user with email ${email} already exists`);
+      }
+
+      await createUserWithEmailAndPassword(auth, email, password);
+      return setDoc(doc(db, "users", email), {
+        watchList: [],
+      });
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   };
 
   const signIn = (email: string, password: string) => {
