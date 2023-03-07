@@ -35,7 +35,7 @@ cd mal-clone
 ```bash
 npm install
 
-or
+# or
 
 pnpm install
 ```
@@ -64,7 +64,7 @@ VITE_REACT_APP_APP_ID=(your app id here)
 ```bash
 npm run dev
 
-or
+# or
 
 pnpm run dev
 ```
