@@ -18,7 +18,7 @@
 > An anime tracker web application based on the famous site [MyAnimeList](https://www.myanimelist.net) with data regarding different anime, specific data about an anime and to add them to a personal watchlist to track them and complete them when finished watching.
 > The application is made with ReactJS, TailwindCSS, Firebase, Typescript, Axios and uses the Jikan.Moe API to retrieve data from MyAnimeList.
 
-## Installation/Instructions
+## Installation
 
 ### To run this project locally:
 
